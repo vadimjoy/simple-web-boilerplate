@@ -276,7 +276,7 @@ const ExtractTextPlugin = require("extract-text-webpack-plugin");
 module.exports = {
   entry: [
     ...
-    './src/scss/style.scss'
+    styles
   ],
   ...
   module: {
@@ -284,7 +284,7 @@ module.exports = {
       ...
       {
         test: /\.(sass|scss)$/,
-        include: path.resolve(__dirname, 'src/scss'),
+        include: path.resolve(__dirname, styles),
         use: ExtractTextPlugin.extract({
           use: [{
               loader: "css-loader",
@@ -346,7 +346,7 @@ module.exports = {
       },
       {
         test: /\.(sass|scss)$/,
-        include: path.resolve(__dirname, 'src/scss'),
+        include: path.resolve(__dirname, styles),
         use: ExtractTextPlugin.extract({
           use: [{
               loader: "css-loader",
@@ -408,7 +408,7 @@ npm install html-webpack-plugin raw-loader --save-dev
 **Важное уточнение.** В статьях про сборку HTML страниц через `html-webpack-plugin` обычно подключают встраиваемые шаблоны просто через команду:
 
 ```javascript
-require('html-loader!./../includes/header.html')
+require(partials)
 ```
 
 Но при этом в этих встраиваемых шаблонах синтаксис lodash работать не будет (так и не понял, почему так происходит). И данные из переменной `data` туда не передадутся. Поэтому принудительно говорим webpack, что мы встраиваем именно шаблон, который надо обработать как lodash шаблон.
@@ -466,14 +466,14 @@ function generateHtmlPlugins(templateDir) {
   })
 }
 
-const htmlPlugins = generateHtmlPlugins('./src/html/views')
+const htmlPlugins = generateHtmlPlugins(pages)
 
 module.exports = {
   module: {
       ...
       {
         test: /\.html$/,
-        include: path.resolve(__dirname, 'src/html/includes'),
+        include: path.resolve(__dirname, partials),
         use: ['raw-loader']
       },
     ]

@@ -21,10 +21,10 @@ function generateHtmlPlugins(templateDir) {
   });
 }
 
-const htmlPlugins = generateHtmlPlugins("./src/html/views");
+const htmlPlugins = generateHtmlPlugins("./src/pages");
 
 const config = {
-  entry: ["./src/js/index.js", "./src/scss/style.scss"],
+  entry: ["./src/scripts/index.js", "./src/styles/style.scss"],
   output: {
     filename: "./js/[name].bundle.js"
   },
@@ -37,34 +37,12 @@ const config = {
         extractComments: true
       })
     ],
-    splitChunks: {
-      chunks: 'async',
-      minSize: 30000,
-      maxSize: 200000,
-      minChunks: 1,
-      maxAsyncRequests: 5,
-      maxInitialRequests: 3,
-      automaticNameDelimiter: '~',
-      automaticNameMaxLength: 30,
-      name: true,
-      cacheGroups: {
-        vendors: {
-          test: /[\\/]node_modules[\\/]/,
-          priority: -10
-        },
-        default: {
-          minChunks: 2,
-          priority: -20,
-          reuseExistingChunk: true
-        }
-      }
-    }
   },
   module: {
     rules: [
       {
         test: /\.(sass|scss)$/,
-        include: path.resolve(__dirname, "src/scss"),
+        include: path.resolve(__dirname, "src/styles"),
         use: [
           {
             loader: MiniCssExtractPlugin.loader,
@@ -106,7 +84,7 @@ const config = {
       },
       // {
       //   test: /\.html$/,
-      //   include: path.resolve(__dirname, "src/html/includes"),
+      //   include: path.resolve(__dirname, "src/html/partials"),
       //   use: ["raw-loader"]
       // },
       {
@@ -136,12 +114,8 @@ const config = {
         to: "./"
       },
       {
-        from: "./src/img",
-        to: "./img"
-      },
-      {
-        from: "./src/uploads",
-        to: "./uploads"
+        from: "./src/images",
+        to: "./images"
       }
     ])
   ].concat(htmlPlugins).concat(
