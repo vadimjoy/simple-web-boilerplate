@@ -2,12 +2,8 @@
 
 body {
   font-family: "Roboto-Regular", sans-serif;
-  #logo {
-    width: 10rem;
-  }
-  .container {
-    img {
-      width: 20rem;
-    }
+  margin: 20px;
+  > h1 {
+    font-weight: normal;
   }
 }
