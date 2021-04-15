@@ -1,7 +1,7 @@
 {
   "name": "webpack-html-starter",
-  "version": "2.0.0",
-  "description": "HTML template",
+  "version": "1.0.0",
+  "description": "Prepared webpack configuration for working with pug, scss",
   "main": "src/index.js",
   "scripts": {
     "dev": "webpack --mode development",

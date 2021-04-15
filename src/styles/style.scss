@@ -1,9 +1,22 @@
 @import "../fonts/generated/Roboto-Regular.css";
 
+html,
+body {
+  height: 100%;
+}
+
 body {
   font-family: "Roboto-Regular", sans-serif;
-  margin: 20px;
-  > h1 {
-    font-weight: normal;
+  font-size: 16px;
+  margin: 0;
+
+  & > div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    font-size: 3rem;
+    font-style: italic;
+    color: lighten(#000000, 30%);
   }
 }
